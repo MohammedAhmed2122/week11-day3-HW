@@ -2,14 +2,11 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const fs = require('fs'); // this engine requires the fs module like we did Saturday
+const fs = require('fs'); 
 
-// make sure you change the references of madeline and hypatia to "portal"
 app.engine('portal', (filePath, options, callback) => {
-  // define the view engine called portal
   fs.readFile(filePath, (err, content) => {
     if (err) return callback(err);
-    // this is an extremely simple view engine we'll be more complex later
     const rendered = content
       .toString()
       .replace("#title#", "<title>" + options.title + "</title>")
